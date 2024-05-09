@@ -1,6 +1,9 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
+
+    id("com.google.devtools.ksp") version "1.9.23-1.0.20"
+    kotlin("kapt")
 }
 
 android {
@@ -66,4 +69,31 @@ dependencies {
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
+
+    /// OpenCsv
+    implementation(libs.opencsv)
+
+    // Compose Nav Destinations
+    implementation(libs.core)
+    ksp(libs.ksp)
+
+    //Dagger - Hilt
+    implementation (libs.hilt.android)
+    kapt (libs.hilt.android.compiler)
+    implementation (libs.androidx.hilt.lifecycle.viewmodel)
+    kapt (libs.androidx.hilt.compiler)
+    implementation (libs.androidx.hilt.navigation.compose)
+
+    // Retrofit
+    implementation (libs.retrofit)
+    implementation (libs.converter.moshi)
+    implementation (libs.okhttp)
+    implementation (libs.logging.interceptor)
+
+    // Room
+    implementation (libs.androidx.room.runtime)
+    ksp (libs.androidx.room.compiler)
+
+    // Kotlin Extensions and Coroutines support for Room
+    implementation (libs.androidx.room.ktx)
 }
