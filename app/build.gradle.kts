@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
+    id ("com.google.dagger.hilt.android")
 }
 
 android {
@@ -51,6 +52,26 @@ android {
 
 dependencies {
 
+    /// Dagger Hilt
+    implementation (libs.dagger)
+    implementation (libs.hilt.android.v2511)
+    annotationProcessor (libs.dagger.compiler)
+    annotationProcessor (libs.hilt.compiler)
+
+    /// Retrofit
+    implementation(libs.retrofit)
+    implementation (libs.converter.moshi)
+    // define a BOM and its version
+    implementation(platform(libs.okhttp.bom))
+
+    // define any required OkHttp artifacts without version
+    implementation(libs.okhttp)
+    implementation(libs.okhttp3.logging.interceptor)
+
+    /// DotEnv
+    implementation(libs.dotenv.kotlin)
+
+    /// Core
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)
@@ -59,8 +80,6 @@ dependencies {
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
-    implementation(libs.retrofit)
-    implementation(libs.dotenv.kotlin)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

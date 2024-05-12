@@ -14,7 +14,7 @@ interface StockApi {
         }
 
         private val API_KEY = env["API_KEY"]
-        private const val BASE_URL = "https://www.alphavantage.co/"
+        const val BASE_URL = "https://www.alphavantage.co/"
     }
 
     @GET("query?function=LISTING_STATUS")

@@ -8,8 +8,11 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import retrofit2.HttpException
 import java.io.IOException
+import javax.inject.Inject
+import javax.inject.Singleton
 
-class StockRepositoryImpl(
+@Singleton
+class StockRepositoryImpl @Inject constructor(
     private val api: StockApi
 ): StockRepository {
     override suspend fun getCompanyListings(
