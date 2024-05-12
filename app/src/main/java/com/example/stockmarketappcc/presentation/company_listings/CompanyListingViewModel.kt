@@ -1,11 +1,17 @@
 package com.example.stockmarketappcc.presentation.company_listings
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
-import androidx.lifecycle.ViewModel
 import androidx.compose.runtime.setValue
+import androidx.lifecycle.ViewModel
 import com.example.stockmarketappcc.domain.model.CompanyListing
+import com.example.stockmarketappcc.domain.repository.StockRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 
-class CompanyListingViewModel: ViewModel() {
+@HiltViewModel
+class CompanyListingViewModel @Inject constructor (
+    private val repository: StockRepository
+): ViewModel() {
 
     var state by mutableStateOf(CompanyListingState())
 

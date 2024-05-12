@@ -12,10 +12,16 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
+import com.ramcosta.composedestinations.annotation.Destination
+import com.ramcosta.composedestinations.annotation.RootGraph
+import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 
+@Destination<RootGraph>(start = true)
 @Composable
 fun CompanyListingScreen(
-    viewModel: CompanyListingViewModel
+    navigator: DestinationsNavigator,
+    viewModel: CompanyListingViewModel = hiltViewModel()
 ){
 
     val state = viewModel.state

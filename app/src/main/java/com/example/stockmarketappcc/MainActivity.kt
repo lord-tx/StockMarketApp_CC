@@ -7,13 +7,13 @@ import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
-import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
-import com.example.stockmarketappcc.presentation.company_listings.CompanyListingScreen
-import com.example.stockmarketappcc.presentation.company_listings.CompanyListingViewModel
 import com.example.stockmarketappcc.ui.theme.StockMarketAppCCTheme
+import com.ramcosta.composedestinations.DestinationsNavHost
+import com.ramcosta.composedestinations.generated.NavGraphs
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,21 +24,9 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ){
-                    CompanyListingScreen(
-                        viewModel = CompanyListingViewModel()
-                    )
+                    DestinationsNavHost(navGraph = NavGraphs.root)
                 }
             }
         }
-    }
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    StockMarketAppCCTheme {
-        CompanyListingScreen(
-            viewModel = CompanyListingViewModel()
-        )
     }
 }
