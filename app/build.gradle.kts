@@ -78,6 +78,9 @@ dependencies {
     implementation (libs.compose.destinations.core)
     ksp (libs.compose.destinations.ksp)
 
+    /// CSV
+    implementation(libs.opencsv)
+
     /// Core
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
