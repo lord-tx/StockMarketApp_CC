@@ -1,5 +1,6 @@
 package com.example.stockmarketappcc.data.repository
 
+import com.example.stockmarketappcc.data.csv.CSVParser
 import com.example.stockmarketappcc.data.remote.StockApi
 import com.example.stockmarketappcc.domain.model.CompanyListing
 import com.example.stockmarketappcc.domain.repository.StockRepository
@@ -13,7 +14,8 @@ import javax.inject.Singleton
 
 @Singleton
 class StockRepositoryImpl @Inject constructor(
-    private val api: StockApi
+    private val api: StockApi,
+    private val companyListingsParser: CSVParser<CompanyListing>
 ): StockRepository {
     override suspend fun getCompanyListings(
         fetchFromRemote: Boolean,
@@ -23,7 +25,8 @@ class StockRepositoryImpl @Inject constructor(
             emit(Resource.Loading(isLoading = true))
 
             val remoteListings = try {
-                api.getStockListings()
+                val response = api.getStockListings()
+                companyListingsParser.parse(response.byteStream())
             } catch(e: IOException) {
                 e.printStackTrace()
                 emit(Resource.Error("Couldn't load data"))
@@ -34,7 +37,7 @@ class StockRepositoryImpl @Inject constructor(
                 null
             }
             remoteListings?.let {
-                emit(Resource.Success(data = listOf()))
+                emit(Resource.Success(data = remoteListings))
                 emit(Resource.Loading(isLoading = false))
             }
         }

@@ -18,7 +18,7 @@ interface StockApi {
     }
 
     @GET("query?function=LISTING_STATUS")
-    fun getStockListings(
+    suspend fun getStockListings(
         @Query("apikey") apiKey: String = API_KEY
     ): ResponseBody
 }
